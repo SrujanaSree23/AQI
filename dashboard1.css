@@ -1,0 +1,100 @@
+/* styles.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #FFD1BA, #FFADAD);
+}
+
+.dashboard-container {
+    text-align: center;
+}
+
+.dashboard-heading {
+    font-size: 2.5em;
+    color: #D66D75;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-items: center;
+}
+
+.dashboard-btn {
+    width: 280px;
+    padding: 15px 30px;
+    border: 2px solid #FF9A8B;
+    border-radius: 12px;
+    color: #5D001E;
+    font-size: 1.3em;
+    font-weight: bold;
+    background-color: #FFE6E1;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover effect for each main button */
+.dashboard-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+    border-color: #FF6F61;
+}
+
+.dashboard-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Featured button with sub-options */
+.featured-btn-wrapper {
+    position: relative;
+}
+
+.sub-options {
+    display: none;
+    position: absolute;
+    top: 110%; /* Position below the Featured button */
+    left: 0;
+    background: #FFE6E1;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    z-index: 10;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.featured-btn-wrapper:hover .sub-options {
+    display: flex;
+}
+
+.sub-option {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #5D001E;
+    border: 1px solid #FF9A8B;
+    background: #FFD7D1;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sub-option:hover {
+    background: #FFB6B2;
+    color: #FFFFFF;
+}

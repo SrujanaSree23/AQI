@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historical Air Quality Index Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7e0cbcf;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #000a09;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #000d0c;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #000505;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f1f8e9;
+        }
+        tr:hover {
+            background-color: #b2dfdb;
+        }
+        .good {
+            background-color: #c8e6c9;
+        }
+        .moderate {
+            background-color: #fff9c4;
+        }
+        .unhealthy {
+            background-color: #ffccbc;
+        }
+        .very-unhealthy {
+            background-color: #ef5350;
+            color: white;
+        }
+        .advisory {
+            font-weight: bold;
+        }
+        .input-section {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .input-section input {
+            padding: 8px;
+            margin: 5px;
+            width: 200px;
+        }
+        .input-section button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Historical Air Quality Index Data In India</h1>
+
+<div class="input-section">
+    <input type="text" id="dateInput" placeholder="Enter Date (e.g., 2021-2024)">
+    <input type="text" id="locationInput" placeholder="Enter Location">
+    <input type="text" id="aqiInput" placeholder="Enter AQI">
+    <input type="text" id="advisoryInput" placeholder="Enter Health Advisory">
+    <button onclick="addRow()">Add Data</button>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Location</th>
+            <th>AQI</th>
+            <th>Health Advisory</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="dataTable">
+        <tr>
+            <td>2021-2024</td>
+            <td>Shivamogga</td>
+            <td>45</td>
+            <td class="good advisory">Good</td>
+            <td><button onclick="deleteRow(this)">Delete</button></td>
+        </tr>
+        <tr>
+            <td>2021-2024</td>
+            <td>Mangalore</td>
+            <td>103</td>
+            <td class="moderate advisory">Moderate</td>
+            <td><button onclick="deleteRow(this)">Delete</button></td>
+        </tr>
+        <tr>
+            <td>2021-2024</td>
+            <td>Ahmedabad</td>
+            <td>227</td>
+            <td class="unhealthy advisory">Unhealthy</td>
+            <td><button onclick="deleteRow(this)">Delete</button></td>
+        </tr>
+        <tr>
+            <td>2021-2024</td>
+            <td>Vrindavan</td>
+            <td>124</td>
+            <td class="moderate advisory">Moderate</td>
+            <td><button onclick="deleteRow(this)">Delete</button></td>
+        </tr>
+        <tr>
+            <td>2021-2024</td>
+            <td>Delhi</td>
+            <td>324</td>
+            <td class="very-unhealthy advisory">Very Unhealthy</td>
+            <td><button onclick="deleteRow(this)">Delete</button></td>
+        </tr>
+        <tr>
+            <td>2021-2024</td>
+            <td>Kolar</td>
+            <td>30</td>
+            <td class="good advisory">Good</td>
+            <td><button onclick="deleteRow(this)">Delete</button></td>
+        </tr>
+        <tr>
+            <td>2021-2024</td>
+            <td>Ajmer</td>
+            <td>109</td>
+            <td class="moderate advisory">Moderate</td>
+            <td><button onclick="deleteRow(this)">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
+
+<img src="historical.jpg" alt="Images">
+<img src="analyze.jpg" alt="Images">
+
+<script>
+    // Function to add a row to the table
+    function addRow() {
+        const date = document.getElementById('dateInput').value;
+        const location = document.getElementById('locationInput').value;
+        const aqi = document.getElementById('aqiInput').value;
+        const advisory = document.getElementById('advisoryInput').value;
+
+        if (date && location && aqi && advisory) {
+            const table = document.getElementById('dataTable');
+            const row = table.insertRow();
+            row.innerHTML = `
+                <td>${date}</td>
+                <td>${location}</td>
+                <td>${aqi}</td>
+                <td class="${getAdvisoryClass(advisory)} advisory">${advisory}</td>
+                <td><button onclick="deleteRow(this)">Delete</button></td>
+            `;
+
+            // Clear input fields after adding
+            document.getElementById('dateInput').value = '';
+            document.getElementById('locationInput').value = '';
+            document.getElementById('aqiInput').value = '';
+            document.getElementById('advisoryInput').value = '';
+        } else {
+            alert("Please fill in all fields.");
+        }
+    }
+
+    // Function to delete a row
+    function deleteRow(button) {
+        const row = button.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+    }
+
+    // Function to set advisory class based on the input
+    function getAdvisoryClass(advisory) {
+        switch(advisory.toLowerCase()) {
+            case 'good': return 'good';
+            case 'moderate': return 'moderate';
+            case 'unhealthy': return 'unhealthy';
+            case 'very unhealthy': return 'very-unhealthy';
+            default: return '';
+        }
+    }
+</script>
+
+</body>
+</html>
